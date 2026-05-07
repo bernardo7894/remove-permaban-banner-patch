@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-05-07T00:00:00",
-  "description": "Initial local development build for hiding Reddit's permanent-ban banner.",
-  "download_url": "",
+  "created_at": "2026-05-08T00:00:00",
+  "description": "Initial build for hiding Reddit's permanent-ban banner.",
+  "download_url": "https://raw.githubusercontent.com/bernardo7894/remove-permaban-banner-patch/main/dist/patches-0.1.0.mpp",
   "signature_download_url": "",
   "version": "0.1.0"
 }

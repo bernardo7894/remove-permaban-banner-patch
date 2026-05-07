@@ -23,11 +23,13 @@ It does not modify Reddit API behavior and does not make the app believe the acc
 
 The bundle is written under `patches/build/libs`.
 
+The Manager-facing bundle copy is published at `dist/patches-0.1.0.mpp` and referenced by `patches-bundle.json`.
+
 ## Add Source To Morphe Manager
 
 After publishing this repository to GitHub, add it in Morphe Manager from advanced/expert mode using the same style as Patcheddit:
 
-`https://morphe.software/add-source?github=<owner>/<repo>`
+`https://morphe.software/add-source?github=bernardo7894/remove-permaban-banner-patch`
 
 For a local development build, use the generated `.mpp` bundle from `patches/build/libs` if your Morphe Manager build supports importing a local patch bundle.
 
