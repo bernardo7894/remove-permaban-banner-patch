@@ -2,45 +2,50 @@ package app.morphe.patches.reddit.banner
 
 import app.morphe.patcher.Fingerprint
 import app.morphe.patcher.methodCall
-import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.Opcode
 
 internal object HomePermanentBanBannerFingerprint : Fingerprint(
-    definingClass = "Lcom/reddit/feedslegacy/switcher/impl/homepager/compose/HomePagerScreen;",
-    name = "O5",
     returnType = "V",
-    accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL),
-    parameters = listOf("Landroidx/compose/ui/s;", "Landroidx/compose/runtime/l;", "I"),
     filters = listOf(
         methodCall(
             opcode = Opcode.INVOKE_VIRTUAL,
-            smali = "Lip1/c;->j(Landroid/content/res/Resources;)Ljava/lang/String;"
+            definingClass = "Lip1/c;",
+            name = "j",
+            parameters = listOf("L"),
+            returnType = "Ljava/lang/String;",
         ),
         methodCall(
             opcode = Opcode.INVOKE_STATIC,
-            smali = "Lm22/e;->i(IILandroidx/compose/runtime/l;Landroidx/compose/ui/s;Ljava/lang/String;Lun3/k;Z)V"
+            definingClass = "Lm22/e;",
+            name = "i",
+            parameters = listOf("I", "I", "L", "L", "Ljava/lang/String;", "L", "Z"),
+            returnType = "V",
         )
     )
 )
 
 internal object InboxPermanentBanBannerFingerprint : Fingerprint(
-    definingClass = "Lcom/reddit/notification/impl/ui/pager/InboxTabPagerScreen;",
-    name = "u5",
     returnType = "Landroid/view/View;",
-    accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL),
-    parameters = listOf("Landroid/view/LayoutInflater;", "Landroid/view/ViewGroup;"),
     filters = listOf(
         methodCall(
             opcode = Opcode.INVOKE_VIRTUAL,
-            smali = "Lip1/c;->j(Landroid/content/res/Resources;)Ljava/lang/String;"
+            definingClass = "Lip1/c;",
+            name = "j",
+            parameters = listOf("L"),
+            returnType = "Ljava/lang/String;",
         ),
         methodCall(
             opcode = Opcode.INVOKE_VIRTUAL,
-            smali = "Lcom/reddit/screen/RedditComposeView;->setContent(Lun3/n;)V"
+            definingClass = "Lcom/reddit/screen/RedditComposeView;",
+            name = "setContent",
+            parameters = listOf("L"),
+            returnType = "V",
         ),
         methodCall(
             opcode = Opcode.INVOKE_VIRTUAL,
-            smali = "Lcom/reddit/notification/impl/ui/pager/InboxTabPagerScreen;->B5()Lcom/reddit/screen/widget/ScreenPager;"
+            definingClass = "Lcom/reddit/notification/impl/ui/pager/InboxTabPagerScreen;",
+            name = "B5",
+            returnType = "Lcom/reddit/screen/widget/ScreenPager;",
         )
     )
 )

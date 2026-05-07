@@ -22,10 +22,10 @@ val hidePermanentBanBannerPatch = bytecodePatch(
             addInstructionsWithLabels(
                 renderBannerIndex,
                 """
-                    const-string v1, "$PERMANENT_BAN_TEXT"
-                    invoke-virtual { v4, v1 }, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
-                    move-result v1
-                    if-nez v1, :hidePermanentBanBanner
+                    const-string p2, "$PERMANENT_BAN_TEXT"
+                    invoke-virtual { v4, p2 }, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
+                    move-result p2
+                    if-nez p2, :hidePermanentBanBanner
                 """,
                 ExternalLabel("hidePermanentBanBanner", getInstruction(renderBannerIndex + 1)),
             )
@@ -33,11 +33,11 @@ val hidePermanentBanBannerPatch = bytecodePatch(
 
         InboxPermanentBanBannerFingerprint.method.apply {
             val bannerTextIndex = InboxPermanentBanBannerFingerprint.instructionMatches[0].index
-            val continueIndex = bannerTextIndex + 1
+            val insertIndex = bannerTextIndex + 2
             val pagerSetupIndex = InboxPermanentBanBannerFingerprint.instructionMatches[2].index
 
             addInstructionsWithLabels(
-                continueIndex,
+                insertIndex,
                 """
                     const-string v4, "$PERMANENT_BAN_TEXT"
                     invoke-virtual { v0, v4 }, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
@@ -45,7 +45,7 @@ val hidePermanentBanBannerPatch = bytecodePatch(
                     if-eqz v4, :continuePermanentBanBanner
                     goto :hidePermanentBanBanner
                 """,
-                ExternalLabel("continuePermanentBanBanner", getInstruction(continueIndex)),
+                ExternalLabel("continuePermanentBanBanner", getInstruction(insertIndex)),
                 ExternalLabel("hidePermanentBanBanner", getInstruction(pagerSetupIndex)),
             )
         }
