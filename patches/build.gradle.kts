@@ -23,36 +23,10 @@ tasks {
     register<JavaExec>("generatePatchesList") {
         description = "Build patch with patch list"
 
-        dependsOn(build)
+        dependsOn("buildAndroid")
 
         classpath = sourceSets["main"].runtimeClasspath
         mainClass.set("app.morphe.util.PatchListGeneratorKt")
-
-        doLast {
-            rootProject.file("patches-list.json").writeText(
-                """
-                {
-                  "version": "${project.version}",
-                  "patches": [
-                    {
-                      "name": "Hide permanent ban banner",
-                      "description": "Hides Reddit's persistent permanent-ban account banner without changing account state or API behavior.",
-                      "use": true,
-                      "dependencies": [
-                        "BytecodePatch"
-                      ],
-                      "compatiblePackages": {
-                        "com.reddit.frontpage": [
-                          "2026.10.0"
-                        ]
-                      },
-                      "options": []
-                    }
-                  ]
-                }
-                """.trimIndent() + "\n"
-            )
-        }
     }
 
     publish {
