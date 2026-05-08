@@ -15,7 +15,7 @@ internal object HomePermanentBanBannerFingerprint : Fingerprint(
             returnType = "Ljava/lang/String;",
         ),
         methodCall(
-            opcode = Opcode.INVOKE_STATIC,
+            opcode = Opcode.INVOKE_STATIC_RANGE,
             definingClass = "Lm22/e;",
             name = "i",
             parameters = listOf("I", "I", "L", "L", "Ljava/lang/String;", "L", "Z"),
